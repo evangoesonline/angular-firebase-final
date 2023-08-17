@@ -1,0 +1,24 @@
+<p class="text-center">IWD2 students often refer to tutorials and supplementary information to aid their learning. There
+    is so much great content available, it can be hard to keep track of it all and find time to consume everything. This
+    app is used to act to create a personal collection of your favourite tutorials, storing them in a connected
+    Firestore database for future reference..
+</p>
+<div class="list row">
+    <div class="col-md-6">
+        <h4>Tutorials List</h4>
+        <ul class="list-group">
+            <li class="list-group-item border border-primary" *ngFor="let tutorial of tutorials; let i = index"
+                [class.active]="i == currentIndex" (click)="setActiveTutorial(tutorial, i)">
+                {{ tutorial.title }}
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <div *ngIf="currentTutorial">
+            <app-tutorial-details (refreshList)="refreshList()" [tutorial]="currentTutorial"></app-tutorial-details>
+        </div>
+
+        <div *ngIf="!currentTutorial">
+            <br />
+            <p>Please click on a Tutorial or <a href="/add"><em>add one</em></a> if none are listed!</p>
+        </div>
